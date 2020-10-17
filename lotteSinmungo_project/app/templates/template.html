@@ -7,6 +7,9 @@
     {% endblock title %}
     {% load static %}
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}">
+    <script type="text/javascript" src="/resource/js/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 <style>
@@ -14,14 +17,12 @@
     margin: 0px;
     padding: 0px;
     }
-    a { text-decoration:none } 
+    a { text-decoration:none }
     .body {
-        margin : 0;
         display : flex;
         height : 1080px;
         }
-    .container {
-        height : 100%;
+    .container-fluid {
         flex-direction: column;
     }
     .upbar{
@@ -81,7 +82,7 @@
         flex-direction : row;
     }
     .rul_container{
-        width : 50%;
+        width : 60%;
         height : 100%;
         background-color : white;
         text-align: left;
@@ -89,7 +90,7 @@
         padding-top : 18px;
     }
     .rur_container{
-        width : 50%;
+        width : 40%;
         height : 100%;
         background-color : white;
         text-align : center;
@@ -113,16 +114,30 @@
         text-decoration: none;
         display: inline-block;
         font-size: 25px;
+        font-weight : bold;
         margin: 4px;
         cursor: pointer;
+        border-radius: 50px;
+}
+.button:hover{
+    box-shadow:300px 0 0 0 rgba(0,0,0,0.5) inset;
+
 }
     .footer{
-        background-color : #DA291C;
+        width : 100%;
+        height : 40px;
+        background-color : #f5f5f5;
+        cursor: pointer;
+        font-size : 20px;
+        font-weight : bold;
+        color : gray;
+        text-align : left;
+        line-height : 40px;
     }
 </style>
 <!-- 항상 Body에 존재하는 상단 메뉴 부분-->
 <body>
-    <div class = "container">
+    <div class = "container-fluid">
         <div class = "upbar">
             <a href = "{% url 'signin' %}" style="color: black; font-size : 15px;">로그인</a>&emsp;&emsp;&emsp;&emsp;
             <a href = "{% url 'signup' %}" style="color: black; font-size : 15px;">회원가입</a>&emsp;&emsp;&emsp;&emsp;
@@ -131,16 +146,24 @@
         </div>
         <div class = "bar">
             <div class = "logo">
-                <img src = "../static/image/mainlogo.png" width = "820px" height = "180px">
+                <img src = "static/image/mainlogo.png" width = "820px" height = "180px">
             </div>
             <div class = "m_bar">
-                <a href ="{% url 'solution' %}" style="color: white; font-size : 30px;">롯데가 해냈어</a>
+                <div class="col-xs-6 col-md-4">
+                    <a href ="{% url 'solution' %}" style="color: white; font-size : 30px; font-weight : bold;">롯데가 해냈어</a>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <a href ="{% url 'problemList' %}" style="color: white; font-size : 30px; font-weight : bold;">롯데의 숙제들</a>
+                </div>
+                <div class="col-xs-6 col-md-4">
+                    <a href ="{% url 'writing' %}" style="color: white; font-size : 30px; font-weight : bold;">롯데에게 말해줘</a></div>
+                <!-- <a href ="{% url 'solution' %}" style="color: white; font-size : 30px; font-weight : bold;">롯데가 해냈어</a>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a style="color: white; font-size : 30px;">|</a>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <a href ="{% url 'problemList' %}" style="color: white; font-size : 30px;">롯데의 숙제들</a>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a style="color: white; font-size : 30px;">|</a>
+                <a href ="{% url 'problemList' %}" style="color: white; font-size : 30px; font-weight : bold;">롯데의 숙제들</a>
                 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <a href ="{% url 'writing' %}" style="color: white; font-size : 30px;">롯데에게 말해줘</a>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <a href ="{% url 'writing' %}" style="color: white; font-size : 30px; font-weight : bold;">롯데에게 말해줘</a> -->
             </div>
         </div>
         <div class = "m_container">
@@ -150,12 +173,12 @@
             <div class = "r_container">
                 <div class = "ru_container">
                     <div class = "rul_container">
-                        <br><br><a style  = "color : gray; font-size : 30px; font-style : bold;">롯데그룹은 고객의 목소리를 듣습니다.</a><br><br>
+                        <br><br><a style  = "color : gray; font-size : 28px; font-weight : bold;">롯데그룹은 고객의 목소리를 듣습니다.</a><br><br>
                         <a style = "color : gray; font-size : 25px;">롯데 신문고에 방문해주셔서 감사합니다. <br>
                         무엇이든 말씀해주세요 ! </a>
                     </div>
                     <div class = "rur_container">
-                        <a href="{% url 'signin' %}">
+                        <a href="{% url 'signin' %}">                       
                             <div class = "button">Sign In</div>
                             <br><br>
                         <a href="{% url 'signup' %}">
@@ -169,7 +192,10 @@
             </div> 
         </div>
         <div class = "footer">
-            <h1>여기는 푸터</h1>
+            <a href = "https://www.lotteon.com/p/display/main/lotteon" style = "color : gray;">Lotte ON</a>&emsp;
+            <a>About Us</a>&emsp;
+            <a href = "https://github.com/Gobans/Likelion-LotteSinmungo" style = "color : gray;">GitHub Repo</a>&emsp;
+            <a>Family Site</a><button>click</button>
         </div>
     </div>
 
@@ -181,12 +207,6 @@
     <a href="{% url 'mypage' %}">마이페이지</a>
 
     {% else %}
-    <a href="{% url 'signup' %}">
-        <button>회원가입</button>
-    </a>
-    <a href="{% url 'signin' %}">
-        <button>로그인</button>
-    </a>
     <br>
     {% endif %}
 
