@@ -17,6 +17,8 @@ from django.views.decorators.http import require_POST
 from django.db.models.signals import post_save
 from notifications.signals import notify
 
+from django.core.paginator import Paginator
+
 def index(request):
     recipients = myUser.objects.all()
     user = request.user
@@ -31,6 +33,7 @@ def problemDetail(request, problem_detail_id):
 
 def problemList(request):
     problem_list_item = Problem.objects.all()
+
     if request.user.is_authenticated:
         user = request.user
         user.notifications.mark_all_as_read()
@@ -45,7 +48,11 @@ def problemList(request):
         problem_list_item = Problem.objects.order_by('-updated_at')
     elif sort=="many_like":
         problem_list_item = Problem.objects.order_by('-like_count', '-updated_at')
-    """----------- """        
+    """----------- """      
+
+    page = int(request.GET.get('p', 1)) #초기 page지정
+    paginator = Paginator(problem_list_item, 10) #한 페이지에 보여줄 게시물 설정 -> 10개
+    problem_list_item = paginator.get_page(page) 
     
     return render(request, 'problemList.html', {'problem_list_item':problem_list_item,'problem_trending':problem_trending})
 
