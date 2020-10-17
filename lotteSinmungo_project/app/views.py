@@ -50,7 +50,7 @@ def solutionDetail(request, solution_detail_id):
     solution_detail_item = get_object_or_404(Solution, pk = solution_detail_id)
     return render(request, 'solution_detail.html', {"solution_detail_item":solution_detail_item})
 
-def writing(request):
+def problemWrite(request):
     user_id = request.user.id
     user = request.user #알림 보낼 관리자
     recipients = myUser.objects.all()  #알림 받을 사람들
@@ -65,7 +65,7 @@ def writing(request):
                 notify.send (user, recipient = recipients, verb ='님께서 새로운 숙제를 작성하셨습니다 (●''●)')
             return redirect('problemList') #problemList 중에서도 최신 순으로 나열되어 있는 페이지를 보여주는 게 좋을듯 (나중에 추가하자)
     prb_form = ProblemForm()
-    return render(request, 'writing.html', {'prb_form':prb_form})
+    return render(request, 'problem_write.html', {'prb_form':prb_form})
 
 def problemUpdate(request,problem_detail_id):
     post = get_object_or_404(Problem,pk=problem_detail_id)

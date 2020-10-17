@@ -31,7 +31,7 @@ urlpatterns = [
     path('problemList/',views.problemList, name = 'problemList'),
     path('problemDetail/<int:problem_detail_id>', views.problemDetail, name = "problemDetail"),
 
-    path('writing/',views.writing, name = 'writing'),
+    path('problemWrite/',views.problemWrite, name = 'problemWrite'),
     path('problemUpdate/<int:problem_detail_id>', views.problemUpdate,name='problemUpdate'),
     path('problemDelete/<int:problem_detail_id>', views.problemDelete,name='problemDelete'),
     path('signup/', views.signup, name='signup'),
