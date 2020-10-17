@@ -10,7 +10,13 @@
 <!-- 실제 Body의 내용이 들어가는 부분-->
 
 
-{{user.username}}
+{% load notifications_tags %}
+{% notifications_unread as unread_count %}
+{% if unread_count %}
+    <strong>{{ unread_count }}</strong> 개의 새로운 숙제가 올라왔어요!
+    {{ notifications_tags }}
+
+{% endif %}
 
 <!-- 이 아래부터는 html 콘텐츠 내용입니다 -->
 {% endblock contents %}

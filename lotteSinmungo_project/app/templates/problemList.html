@@ -6,17 +6,84 @@
 {% endblock title %}
 
 {% block contents %}
-
+<link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <div>
+        <select id="sort-select" onchange="location = this.value;">
+            <option class= "none" value="?sort=none">---</option>
+            <option class= "sort-likes" value="?sort=many_like">공감순</option>
+            <option class= "sort-date'" value="?sort=early_date">최신순</option>
+        </select>
+    </div>
 
     <a href = "{% url 'index' %}">이미지로고자리</a>
     <a href ="{% url 'solution' %}">롯데가해냈어</a>
     <a href ="{% url 'problemList' %}">롯데의숙제들</a>
     <a href ="{% url 'writing' %}">롯데에게말해줘</a>
     <a href='/signin'>로그인</a>
-    <a href='/signup'>회원가입</a>
+    <a href='/signup'>회원가입</a> -->
 
-    {% for i in problem_list_item %}
-        <a href= "{% url 'problemDetail' i.id %}"><h1> {{i.title}}</h1></a>
+    <!-- ranking -->
+        <!-- use crontab or Periodic Tasks -->
+        <h1>
+            [여기는 게시물 랭킹순(상위 10개)]
+        </h1>
+        <table class = "table">
+            <thead>
+            <tr class="thead-dark">
+                <th>번호</th>
+                <th>제목</th>
+                <th>공감수</th>
+                <th>작성일</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for k in problem_trending %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>
+                    <a href= "{% url 'problemDetail' k.id %}">{{k.title}}</a>
+                </td>
+                <td>
+                    {{ k.like_count }}
+                </td>
+                <td>{{ k.updated_at }}</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+        </table>     
+
+    <h1>
+        [여기는 그냥 게시물 모음(select box 옵션에 따라 정렬 되는 부분)]
+    </h1>
+
+    <table class = "table">
+        <thead>
+        <tr class="thead-dark">
+            <th>번호</th>
+            <th>제목</th>
+            <th>공감수</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in problem_list_item %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                <a href= "{% url 'problemDetail' i.id %}">{{i.title}}</a>
+            </td>
+            <td>
+                {{ i.like_count }}
+            </td>
+            <td>{{ i.updated_at }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+    </table>    
+
+    {% for unread_messages in unread_messages.all %}
+    <p> {{unread_messages}}</p>
     {% endfor %}
 
 {% endblock contents %}

@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from django.conf.urls import url,include
+import notifications.urls
+# from app.funtion.rankReset import scheduler 
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,11 +29,17 @@ urlpatterns = [
     path('solutionDetail/<int:solution_detail_id>', views.solutionDetail, name = "solutionDetail"),
 
     path('problemList/',views.problemList, name = 'problemList'),
-    path('problemDetail/<int:problem_detial_id>', views.problemDetail, name = "problemDetail"),
+    path('problemDetail/<int:problem_detail_id>', views.problemDetail, name = "problemDetail"),
 
     path('writing/',views.writing, name = 'writing'),
+    path('problemUpdate/<int:problem_detail_id>', views.problemUpdate,name='problemUpdate'),
+    path('problemDelete/<int:problem_detail_id>', views.problemDelete,name='problemDelete'),
     path('signup/', views.signup, name='signup'),
     path('signin/', views.signin, name='signin'),
     path('signout/', views.signout, name='signout'),
     path('mypage/', views.mypage, name='mypage'),
+
+    path('like/<int:problem_detail_key_id>', views.problem_like, name='problem_like'),
+    url('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
 ]
+# scheduler.start()
