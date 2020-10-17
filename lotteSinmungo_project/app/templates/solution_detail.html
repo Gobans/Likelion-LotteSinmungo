@@ -7,9 +7,8 @@
 {% endblock title %}
 
 {% block contents %}
-    {% for solution in solution_item.all %}
-    <a href= "{% url 'solutionDetail' solution.id %}">
-        <h1> {{solution.title}}</h1>
-    </a>
-    {% endfor %}
+
+    <h1> {{solution_detail_item.title}}</h1>
+    <h1> {{solution_detail_item.body}}</h1>
+
 {% endblock contents %}

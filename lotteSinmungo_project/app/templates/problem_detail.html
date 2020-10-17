@@ -7,8 +7,24 @@
 </head>
 <body>
     <a href = "{% url 'problemList' %}">뒤로가기</a>
+    {% if user.is_authenticated %}
+        {% if user.id == problem_detail_key.userid %}
+        <a href = "{% url 'problemUpdate' problem_detail_key.id %}">수정하기</a>
+        <a href = "{% url 'problemDelete' problem_detail_key.id %}">삭제하기</a>
+        {% endif %}
+    {% endif %}
+
     <h1>{{problem_detail_key.title}} </h1>
     <p>{{problem_detail_key.body}} </p>
-    <p>{{problem_detail_key.updated_at|date:"Y년 m월 d일"}}   
+    <p>{{problem_detail_key.updated_at|date:"Y년 m월 d일"}} 
+    <p>♥:{{problem_detail_key.like_count}}</p>
+    <a href="{% url 'problem_like' problem_detail_key.id %}">
+        {% if problem_detail_key in check_like_post %}
+            취소
+        {% else %}
+            좋아요
+        {% endif %}
+    </a>  
 </body>
+
 </html>

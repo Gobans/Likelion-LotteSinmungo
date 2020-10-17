@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>롯데신문고</title>
+</head>
+<body>
+    <a href = "{% url 'index' %}">이미지로고자리</a>
+    <a href ="{% url 'solution' %}">롯데가해냈어</a>
+    <a href ="{% url 'problemList' %}">롯데의숙제들</a>
+    <a href ="{% url 'writing' %}">롯데에게말해줘</a>
+    <a href='/signin'>로그인</a>
+    <a href='/signup'>회원가입</a>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+        {{prb_form.as_p}}
+        <input type="submit" value="확인">
+    </form>
+
+
+</body>
+</html>

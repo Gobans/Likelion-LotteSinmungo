@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+{% load static %}
+{% load notifications_tags %}
+{% block title %}
+<title>롯데신문고</title>
+{% endblock title %}
+
+{% block contents %}
+
+<!-- 이 아래부터는 html 콘텐츠 내용입니다 -->
+{% if user.is_authenticated %}
+    <h1>새 알림 목록</h>
+    {% for unread_messages in unread_messages.all %}
+    <p> {{unread_messages}}</p>
+    {{ notifications_tags }}
+    {% endfor %}
+    
+    <h2>좋아요한 불만사항</h2>
+    {% for like_item in my_like_item %}
+        <p>{{like_item.title}}</p>
+    {% endfor %}
+
+    <!-- for구문지우기 -->
+    <h2>내가 작성한 불만사항</h2>
+    {% for probl_item in my_problem_item %}
+        <p>{{probl_item.title}}</p>
+    {% endfor %}
+    
+
+{% else %}
+<p>로그인이 필요한 서비스입니다</p>
+{% endif %}
+
+{% endblock contents %}

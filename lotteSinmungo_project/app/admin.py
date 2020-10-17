@@ -1,9 +1,7 @@
 from django.contrib import admin
-from .models import Problem, myUser
+from .models import Problem, myUser, Solution
+from django.contrib.auth.admin import UserAdmin
 
-class UserAdmin(admin.ModelAdmin) :
-    list_display = ('username', 'password')
-
-
+admin.site.register(Solution)
 admin.site.register(Problem)
-admin.site.register(myUser, UserAdmin) 
+admin.site.register(myUser, UserAdmin)

@@ -7,21 +7,16 @@
 
 {% block contents %}
 
-<!-- 이 아래부터는 html 콘텐츠 내용입니다 -->
+<!-- 실제 Body의 내용이 들어가는 부분-->
 
-{% if user.is_authenticated %}
-    <button>로그아웃</button>
-{{user}}님 함께 불만을 나눠주세요 :D
 
-{% else %}
-<a href="{% url 'signup' %}">
-<button>회원가입</button>
-</a>
+{% load notifications_tags %}
+{% notifications_unread as unread_count %}
+{% if unread_count %}
+    <strong>{{ unread_count }}</strong> 개의 새로운 숙제가 올라왔어요!
+    {{ notifications_tags }}
 
-<a href="{% url 'signin' %}">
-    <button>로그인</button>
-</a>
 {% endif %}
 
-
+<!-- 이 아래부터는 html 콘텐츠 내용입니다 -->
 {% endblock contents %}

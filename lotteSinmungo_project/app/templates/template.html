@@ -3,21 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     {% block title %}
     {% endblock title %}
-
+    {% load static %}
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo&display=swap" rel="stylesheet">
-</head>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/css/bootstrap.min.css' %}">
 
+</head>
+<style>
+    * {
+    margin: 0px;
+    padding: 0px;
+    }
+    a { text-decoration:none } 
+    .body {
+        margin : 0;
+        display : flex;
+        height : 1080px;
+        }
+    .container {
+        height : 100%;
+        flex-direction: column;
+    }
+    .upbar{
+        width : 100%;
+        height : 60px;
+        background-color :white;
+        text-align: right;
+        padding-top: 15px;
+        }
+    .bar{
+        width : 100%;
+        height : 300px;
+        flex-direction: column; 
+        background-color : white;
+        align-items: center;
+        }
+    .logo{
+        width : 100%;
+        height :190px;
+        background-color :white;
+        text-align: center;
+        }
+    .m_bar{
+        width : 100%;
+        height : 110px;
+        line-height : 110px;
+        background-color : #DA291C;
+        text-align : center;
+        }
+    .m_container{
+        width : 100%;
+        height : 500px;
+        display : flex;
+        }
+    .l_container{
+        width: 50%;
+        height : 500px;
+        float: left;
+        box-sizing: border-box;
+        background-color : yellow;
+        }
+
+    .r_container{
+        width : 50%;
+        height : 500px;
+        float: right;
+        box-sizing: border-box;
+        background-color : purple;
+        flex-direction: column;
+        display : flex;
+        }
+    .ru_container{
+        width : 100%;
+        height : 40%;
+        background-color : pink;
+        display : flex;
+        flex-direction : row;
+    }
+    .rul_container{
+        width : 50%;
+        height : 100%;
+        background-color : green;
+        flex : 1;
+    }
+    .rur_container{
+        width : 50%;
+        height : 100%;
+        background-color : gray;
+        flex : 1;
+    }
+    .rd_container{
+        width : 100%;
+        height : 60%;
+        background-color : blue;
+    }
+    .footer{
+        background-color : #DA291C;
+    }
+
+    table td{
+    width: 10%;
+    background: whitesmoke;
+    }
+
+</style>
 <!-- 항상 Body에 존재하는 상단 메뉴 부분-->
 <body>
-    <a href = "{% url 'index' %}">이미지로고자리</a>
-    <a href ="{% url 'solution' %}">롯데가해냈어</a>
-    <a href ="{% url 'problemList' %}">롯데의숙제들</a>
-    <a href ="{% url 'writing' %}">롯데에게말해줘</a>
-    <a href="{% url 'signin' %}">로그인</a>
-    <a href="{% url 'signup' %}">회원가입</a>
+    <div class = "container">
+        <div class = "upbar">
+            {% if user.is_authenticated %}
+            <<a href="{% url 'mypage' %} " style="color: black; font-size : 15px;">>{{user}}님! 함께 불만을 나눠주세요 :D<a>&emsp;&emsp;&emsp;&emsp;
+            <a href="{% url 'mypage' %} " style="color: black; font-size : 15px;">마이페이지</a>&emsp;&emsp;&emsp;&emsp;
+            <a href="{% url 'signout' %}" style="color: black; font-size : 15px;">로그아웃</a>&emsp;&emsp;&emsp;&emsp;
+            {% else %}
+            <a href = "{% url 'signin' %}" style="color: black; font-size : 15px;">로그인</a> &emsp;&emsp;&emsp;&emsp;
+            <a href = "{% url 'signup' %}" style="color: black; font-size : 15px;">회원가입</a>&emsp;&emsp;&emsp;&emsp;
+            {% endif %}
+            <a style="color: black; font-size : 15px;">F&Q</a>&emsp;&emsp;&emsp;&emsp;
+            <a style="color: black; font-size : 15px;">고객센터</a>&emsp;&emsp;&emsp;&emsp;
+        </div>
+        <div class = "bar">
+            <div class = "logo">
+                <img src = "../static/image/mainlogo.png" width = "820px" height = "180px">
+            </div>
+            <div class = "m_bar">
+                <a href ="{% url 'solution' %}" style="color: white; font-size : 30px;">롯데가 해냈어</a>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a style="color: white; font-size : 30px;">|</a>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <a href ="{% url 'problemList' %}" style="color: white; font-size : 30px;">롯데의 숙제들</a>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a style="color: white; font-size : 30px;">|</a>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                <a href ="{% url 'writing' %}" style="color: white; font-size : 30px;">롯데에게 말해줘</a>
+            </div>
+        </div>
+        <div class = "m_container">
+            <div class = "l_container">
+                <div class="contextBox" style="text-align: center; background-color: white;
+                width: 500px; height: 300px; border-radius: 20px; margin: 80px;"></div>
+            </div>
+            <div class = "r_container">
+                <div class = "ru_container">
+                    <div class = "rul_container">
+                    </div>
+                    <div class = "rur_container">
+
+                    </div>
+                </div>
+                <div class = "rd_container">
+                </div>
+            </div> 
+        </div>
+        <div class = "footer">
+            <h1></h1>
+        </div>
+    </div>
 
 <!-- 다른 HTML 파일의 contents block이 삽입되는 부분-->
 {% block contents %}
