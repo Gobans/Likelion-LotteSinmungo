@@ -154,7 +154,7 @@
 <body>
 
 <!--상단 메뉴바-->
-        <nav class = "navbar navbar-light bg-light navbar navbar-expand-sm">
+        <nav class = "navbar navbar-light bg-light navbar navbar-expand-sm ">
             {% if user.is_authenticated %}
             <a href="{% url 'mypage' %} " style="color: black; font-size : 15px; text-decoration: none;">마이페이지</a>&emsp;&emsp;&emsp;&emsp;
             <a href="{% url 'signout' %}" style="color: black; font-size : 15px; text-decoration: none;">로그아웃</a>&emsp;&emsp;&emsp;&emsp;
@@ -174,14 +174,10 @@
                 
 
             </div>
-            <div class = "m_bar">
-                <a href ="{% url 'solution' %}" style="color: white; font-size : 30px;text-decoration: none;">롯데가 해냈어</a>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a style="color: white; font-size : 30px;">|</a>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <a href ="{% url 'problemList' %}" style="color: white; font-size : 30px;text-decoration: none;">롯데의 숙제들</a>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; <a style="color: white; font-size : 30px;text-decoration: none;">|</a>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-                <a href ="{% url 'problemWrite' %}" style="color: white; font-size : 30px;text-decoration: none;">롯데에게 말해줘</a>
+            <div class = "m_bar container-fluid">
+                <a href ="{% url 'solution' %}" style="color: white; font-size : 30px;text-decoration: none; float:left; width: 33%;">롯데가 해냈어</a>
+                <a href ="{% url 'problemList' %}" style="color: white; font-size : 30px;text-decoration: none; float:left; width: 33%;">롯데의 숙제들</a>
+                <a href ="{% url 'problemWrite' %}" style="color: white; font-size : 30px;text-decoration: none; float:left; width: 33%;">롯데에게 말해줘</a>
             </div>
         </div>
       
